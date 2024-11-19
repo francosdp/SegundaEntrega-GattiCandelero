@@ -1,42 +1,84 @@
 import { Router } from "express";
+import ProductManager from "../services/ProductManager.js";
+
 
 const router = Router()
+const productManager = new ProductManager()
 
-const products = []
 
 
-router.get('/', (req, res) => {
-    res.send(products)
-    console.log("get / responde")
+
+
+
+router.get('/', async (req, res) => {
+    try {
+        const limit = req.query.limit ? parseInt(req.query.limit) : undefined
+        const products = await productManager.getAllProducts(limit)
+        res.json(products)
+    }
+    catch (error) {
+        console.log(error)
+    }
 });
 
-router.post('/', (req, res) => {
-    console.log(req.body)
-    let product = req.body
+router.post('/', async (req, res) => {
+    try {
+        const { title, description, code, price, stock, category } = req.body
+        if (!title || !description || !code || !price || !stock || !category) {
+            return res.status(400).json({ error: "Todos los campos son obligatorios" })
+        }
+        const newProduct = await productManager.addProduct({ title, description, code, price, stock, category })
 
-
-    const numRandom = Math.floor(Math.random() * 200 + 1)
-    product.id = numRandom + products.length
-
-    if (!product.title || !product.description || !product.code || !product.price || !product.status || !product.stock || !product.category) {
-        return res.status(400).send('Debe enviar todos los datos')
+        res.status(201).json(newProduct)
+    } catch (error) {
+        console.log(error)
     }
-
-    products.push(product)
-    res.send({ status: 'success', msg: 'Producto Creado' })
 })
 
 
-router.get('/:pid', (req, res) => {
-    let productId =parseInt(req.params.pid)
+router.get('/:pid', async (req, res) => {
+    try {
+        const productId = parseInt(req.params.pid);
+        const product = await productManager.getProductById(productId);
+        res.json(product);
 
-    const productFound = products.find(product => product.id === productId)
-    if (!productFound) {
-        return res.status(404).send('Producto no encontrado')
+        if (!product) {
+            return res.status(404).send("Producto no encontrado")
+        }
+    } catch (error) {
+        console.log(error)
     }
-    res.send(productFound)
 });
 
 
+router.put('/:pid', async (req, res) => {
+    try {
+        const productId = parseInt(req.params.pid);
+        const productUpdated = await productManager.updateProduct(productId, req.body);
+        if (productUpdated) {
+            res.json(productUpdated)
+        } else {
+            res.status(404).json({ error: 'Producto no encontrado' })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+router.delete('/:pid', async (req, res) => {
+    try {
+        const productId = parseInt(req.params.pid);
+        const deletedProduct = await productManager.deteleProduct(productId)
+        if (deletedProduct) {
+            res.json(deletedProduct)
+        } else {
+            res.status(404).json({ error: 'Producto no encontrado' })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+})
 
 export default router;
