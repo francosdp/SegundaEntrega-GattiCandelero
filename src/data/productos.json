@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Jabon para Ropa",
+    "description": "Jabon aroma Floral",
+    "code": "12222123",
+    "price": 2500,
+    "stock": 24,
+    "category": "Hogar",
+    "status": true
+  }
+]

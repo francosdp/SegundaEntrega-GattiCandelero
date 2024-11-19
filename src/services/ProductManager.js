@@ -77,10 +77,10 @@ export default class ProductManager {
     }
 
     async deteleProduct(id) {
-        const productFound = this.products.findIndex(product => product.id === productId)
+        const productFound = this.products.findIndex(product => product.id === id)
         if (productFound < 0) return null
 
-        const deletedProduct = this.product.splice(productFound, 1)
+        const deletedProduct = this.products.splice(productFound, 1)
         this.saveFile()
         return deletedProduct
     }
