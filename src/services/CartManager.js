@@ -72,10 +72,8 @@ export default class CartManager {
 
         const foundCart = this.carts.find(cart => cart.id === id)
         const findProduct = await products.find(product => product.id === productId)
-        if (!findProduct) { return null }
-        else {
             const existingProduct = foundCart.products.find(product => product.product === findProduct.id)
-            
+
             if (!existingProduct) {
                 const newProduct = {
                     product: findProduct.id,
@@ -83,16 +81,16 @@ export default class CartManager {
                 }
                 foundCart.products.push(newProduct)
             } else {
-               const toBeUpdatedProduct = foundCart.products.findIndex(product=>product.product===existingProduct.product)
+                const toBeUpdatedProduct = foundCart.products.findIndex(product => product.product === existingProduct.product)
                 const updatedProduct = {
                     product: findProduct.id,
                     quantity: existingProduct.quantity + amount
                 }
-                
+
                 foundCart.products[toBeUpdatedProduct] = updatedProduct
                 console.log(existingProduct)
             }
-        }
+        
 
         this.saveFile()
         return foundCart

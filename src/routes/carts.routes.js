@@ -56,10 +56,11 @@ router.post('/:cid/product/:pid', async (req, res) => {
         const quantity = parseInt(req.body.quantity)
         const selectedCart = await cartManager.addProduct(cartId, productId, quantity)
 
-        res.json(selectedCart)
+        res.status(201).json(selectedCart)
 
     } catch (error) {
         console.log(error)
+        res.status(404).json("Alguno de los datos proporcionados fue incorrecto, prueba nuevamente.")
     }
 
 
