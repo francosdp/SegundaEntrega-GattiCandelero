@@ -1,12 +1,52 @@
 [
   {
     "id": 1,
-    "title": "Jabon para Ropa",
-    "description": "Jabon aroma Floral",
-    "code": "12222123",
-    "price": 2500,
-    "stock": 24,
-    "category": "Hogar",
+    "title": "Crema Hidratante Facial",
+    "description": "Crema suave para hidratar la piel del rostro, ideal para todo tipo de piel.",
+    "code": 123,
+    "price": 45.99,
+    "stock": 18,
+    "category": "Cuidado Facial",
+    "status": true
+  },
+  {
+    "id": 2,
+    "title": "Mascarilla Revitalizante",
+    "description": "Mascarilla en gel que revitaliza la piel dejándola suave y luminosa.",
+    "code": 456,
+    "price": 68.5,
+    "stock": 12,
+    "category": "Cuidado Facial",
+    "status": true
+  },
+  {
+    "id": 3,
+    "title": "Aceite Corporal Anticelulítico",
+    "description": "Aceite natural que ayuda a mejorar la apariencia de la piel con celulitis.",
+    "code": 789,
+    "price": 120,
+    "stock": 15,
+    "category": "Cuidado Corporal",
+    "status": true
+  },
+  {
+    "id": 4,
+    "title": "Gel Exfoliante Corporal",
+    "description": "Exfoliante suave con microgránulos que elimina las células muertas de la piel.",
+    "code": 101,
+    "price": 85.75,
+    "stock": 10,
+    "category": "Cuidado Corporal",
+    "status": true
+  },
+  {
+    "id": 5,
+    "title": "Laca Voluminizadora para Cabello",
+    "description": "Laca de fijación fuerte que da volumen y textura al cabello, sin dejar residuos.",
+    "code": 202,
+    "price": 32.99,
+    "stock": 20,
+    "category": "Cuidado Capilar",
     "status": true
   }
 ]

@@ -1,12 +1,26 @@
-import { error } from 'console';
-import { readFile } from 'fs';
+import { readFile } from 'fs/promises';
 import fs from 'fs/promises'
 import path from 'path'
 
-
 const cartsFilePath = path.resolve('data', 'carritos.json')
 
+const productsFilePath = path.join('data', 'productos.json')
+
+
+
 export default class CartManager {
+
+
+    async readProducts() {
+        try {
+            const data = await readFile(productsFilePath, 'utf-8')
+            const products = JSON.parse(data)
+            return products
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
 
     async saveFile() {
         const jsonData = JSON.stringify(this.carts, null, 2);
@@ -46,25 +60,42 @@ export default class CartManager {
 
     async findCart(id) {
         const foundCart = this.carts.find(cart => cart.id === id)
-    console.log(foundCart)
+        console.log(foundCart)
         if (!foundCart) {
             return null
         }
         return foundCart.products
     }
 
+    async addProduct(id, productId, amount) {
+        const products = await this.readProducts()
 
+        const foundCart = this.carts.find(cart => cart.id === id)
+        const findProduct = await products.find(product => product.id === productId)
+        if (!findProduct) { return null }
+        else {
+            const existingProduct = foundCart.products.find(product => product.product === findProduct.id)
+            
+            if (!existingProduct) {
+                const newProduct = {
+                    product: findProduct.id,
+                    quantity: amount
+                }
+                foundCart.products.push(newProduct)
+            } else {
+               const toBeUpdatedProduct = foundCart.products.findIndex(product=>product.product===existingProduct.product)
+                const updatedProduct = {
+                    product: findProduct.id,
+                    quantity: existingProduct.quantity + amount
+                }
+                
+                foundCart.products[toBeUpdatedProduct] = updatedProduct
+                console.log(existingProduct)
+            }
+        }
 
-
-
-
-
-
-    async addProduct(productInfo) {
-        const newProduct = { productInfo }
+        this.saveFile()
+        return foundCart
 
     }
-
-
-
 }

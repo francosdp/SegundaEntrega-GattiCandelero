@@ -1,8 +1,16 @@
 import { Router } from "express";
 import CartManager from "../services/CartManager.js"
 
+
+
 const router = Router()
 const cartManager = new CartManager()
+
+
+
+
+
+
 
 router.post('/', async (req, res) => {
     try {
@@ -40,12 +48,15 @@ router.get('/:cid', async (req, res) => {
 
 
 
-router.post('/', async (req, res) => {
+router.post('/:cid/product/:pid', async (req, res) => {
 
     try {
-        const newProduct = await cartManager.addProduct(req.body)
+        const cartId = parseInt(req.params.cid)
+        const productId = parseInt(req.params.pid)
+        const quantity = parseInt(req.body.quantity)
+        const selectedCart = await cartManager.addProduct(cartId, productId, quantity)
 
-
+        res.json(selectedCart)
 
     } catch (error) {
         console.log(error)
