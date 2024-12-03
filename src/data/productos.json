@@ -1,62 +1,162 @@
 [
   {
     "id": 1,
-    "title": "Crema Hidratante Facial",
-    "description": "Crema suave para hidratar la piel del rostro, ideal para todo tipo de piel.",
-    "code": 123,
-    "price": 45.99,
-    "stock": 18,
-    "category": "Cuidado Facial",
-    "status": true
+    "title": "Laptop Dell XPS 13",
+    "description": "Laptop ultradelgada con procesador Intel i7 y pantalla táctil 4K",
+    "code": 101,
+    "price": 1200,
+    "stock": 25,
+    "category": "Computadoras"
   },
   {
     "id": 2,
-    "title": "Mascarilla Revitalizante",
-    "description": "Mascarilla en gel que revitaliza la piel dejándola suave y luminosa.",
-    "code": 456,
-    "price": 68.5,
-    "stock": 12,
-    "category": "Cuidado Facial",
-    "status": true
+    "title": "Auriculares Bose QC45",
+    "description": "Auriculares inalámbricos con cancelación de ruido activa",
+    "code": 102,
+    "price": 350,
+    "stock": 40,
+    "category": "Audio"
   },
   {
     "id": 3,
-    "title": "Aceite Corporal Anticelulítico",
-    "description": "Aceite natural que ayuda a mejorar la apariencia de la piel con celulitis.",
-    "code": 789,
-    "price": 120,
-    "stock": 15,
-    "category": "Cuidado Corporal",
-    "status": true
+    "title": "Smartphone iPhone 14 Pro",
+    "description": "iPhone 14 Pro con cámara de 48 MP y chip A16 Bionic",
+    "code": 103,
+    "price": 999,
+    "stock": 30,
+    "category": "Móviles"
   },
   {
     "id": 4,
-    "title": "Gel Exfoliante Corporal",
-    "description": "Exfoliante suave con microgránulos que elimina las células muertas de la piel.",
-    "code": 101,
-    "price": 85.75,
-    "stock": 10,
-    "category": "Cuidado Corporal",
-    "status": true
+    "title": "Smartwatch Samsung Galaxy Watch 6",
+    "description": "Reloj inteligente con monitoreo de salud y GPS integrado",
+    "code": 104,
+    "price": 250,
+    "stock": 50,
+    "category": "Tecnología"
   },
   {
     "id": 5,
-    "title": "Laca Voluminizadora para Cabello",
-    "description": "Laca de fijación fuerte que da volumen y textura al cabello, sin dejar residuos.",
-    "code": 202,
-    "price": 32.99,
-    "stock": 20,
-    "category": "Cuidado Capilar",
-    "status": true
+    "title": "Teclado mecánico Logitech G Pro X",
+    "description": "Teclado mecánico con interruptores intercambiables y retroiluminación RGB",
+    "code": 105,
+    "price": 150,
+    "stock": 15,
+    "category": "Periféricos"
   },
   {
     "id": 6,
+    "title": "Cámara Sony Alpha 7C",
+    "description": "Cámara mirrorless con sensor full-frame, ideal para fotógrafos profesionales",
+    "code": 106,
+    "price": 1800,
+    "stock": 10,
+    "category": "Fotografía"
+  },
+  {
+    "id": 7,
+    "title": "Monitor LG UltraWide 34WN80C-B",
+    "description": "Monitor UltraWide de 34 pulgadas con resolución 1440p y soporte sRGB 99%",
+    "code": 107,
+    "price": 500,
+    "stock": 20,
+    "category": "Pantallas"
+  },
+  {
+    "id": 8,
+    "title": "Router TP-Link Archer AX73",
+    "description": "Router WiFi 6 con velocidades hasta 5400 Mbps y 4 puertos LAN Gigabit",
+    "code": 108,
+    "price": 120,
+    "stock": 35,
+    "category": "Redes"
+  },
+  {
+    "id": 9,
+    "title": "Consola Nintendo Switch OLED",
+    "description": "Consola híbrida con pantalla OLED de 7 pulgadas y 64 GB de almacenamiento",
+    "code": 109,
+    "price": 350,
+    "stock": 45,
+    "category": "Consolas"
+  },
+  {
+    "id": 10,
+    "title": "Aspiradora Dyson V15 Detect",
+    "description": "Aspiradora inalámbrica con tecnología láser para detectar polvo fino",
+    "code": 110,
+    "price": 700,
+    "stock": 25,
+    "category": "Electrodomésticos"
+  },
+  {
+    "id": 11,
     "title": "Aceite de Coco",
     "description": "Aceite para hidratar la piel",
     "code": 126,
     "price": 32,
     "stock": 12,
     "category": "Cuidado",
+    "status": true
+  },
+  {
+    "id": 12,
+    "title": "Robot Aspirador Roomba 980",
+    "description": "Robot aspirador inteligente con mapeo de casa y control desde app",
+    "code": 111,
+    "price": 650,
+    "stock": 20,
+    "category": "Electrodomésticos",
+    "status": true
+  },
+  {
+    "id": 13,
+    "title": "Cafetera Nespresso Vertuo Plus",
+    "description": "Cafetera de cápsulas con sistema de preparación automática y ajuste de tamaño de taza",
+    "code": 112,
+    "price": 180,
+    "stock": 30,
+    "category": "Electrodomésticos",
+    "status": true
+  },
+  {
+    "id": 14,
+    "title": "Auriculares Sony WH-1000XM5",
+    "description": "Auriculares inalámbricos con cancelación de ruido líder en su clase y hasta 30 horas de autonomía",
+    "code": 113,
+    "price": 400,
+    "stock": 15,
+    "category": "Audio",
+    "status": true
+  },
+  {
+    "id": 15,
+    "title": "Altavoces Bose SoundLink Revolve+ II",
+    "description": "Altavoces Bluetooth portátiles con sonido 360° y hasta 17 horas de autonomía",
+    "code": 114,
+    "price": 349,
+    "stock": 25,
+    "category": "Audio",
+    "status": true
+  },
+  {
+    "id": 16,
+    "title": "Auriculares Beats Studio Buds",
+    "description": "Auriculares inalámbricos con cancelación activa de ruido y hasta 8 horas de autonomía",
+    "code": 115,
+    "price": 150,
+    "stock": 50,
+    "category": "Audio",
+    "status": true
+  },
+  {
+    "id": 17,
+    "title": "Auriculares Sennheiser Momentum 4",
+    "description": "Auriculares de diadema con cancelación de ruido y hasta 60 horas de autonomía",
+    "code": 117,
+    "price": 350,
+    "stock": 10,
+    "category": "Audio",
     "status": true
   }
 ]

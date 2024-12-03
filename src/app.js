@@ -5,19 +5,57 @@ import viewsRouter from './routes/views.router.js'
 import handlebars from 'express-handlebars'
 import __dirname from './utils.js'
 import { Server } from 'socket.io'
+import ProductManager from './services/ProductManager.js'
 
 
 const app = express();
 const PORT = 8080
 
-const httpServer = app.listen(PORT, () => {
-    console.log('Servidor corriendo en ' + PORT)
-});
+const httpServer = app.listen(PORT, () => { console.log('Servidor corriendo en ' + PORT)});
 const socketServer = new Server (httpServer)
+
+
+const productManager = new ProductManager()
 
 socketServer.on('connection', socket =>{
     console.log("Nuevo Cliente conectado")
+
+socket.on("mensaje2",data=>{
+    console.log("Recibido",data)
 })
+socket.on("formulario",data=>{
+    if (!data.title || !data.description || !data.code || !data.price || !data.stock || !data.category) {
+        socket.emit('error', { error: "Todos los campos son obligatorios" });
+        return;
+    }
+    productManager.addProduct(data)
+.then(()=>{
+    socket.emit(`success`, {message : "Producto Agregado Correctamente"})
+    let products = productManager.products
+    socket.emit('productos',products)
+})
+.catch(error=>{
+    socket.emit('error', {error: "Error al agregar producto"})
+})
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+
+})
+
 
 
 app.use(express.json());
