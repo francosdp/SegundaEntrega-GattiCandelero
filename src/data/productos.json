@@ -48,5 +48,15 @@
     "stock": 20,
     "category": "Cuidado Capilar",
     "status": true
+  },
+  {
+    "id": 6,
+    "title": "Aceite de Coco",
+    "description": "Aceite para hidratar la piel",
+    "code": 126,
+    "price": 32,
+    "stock": 12,
+    "category": "Cuidado",
+    "status": true
   }
 ]
