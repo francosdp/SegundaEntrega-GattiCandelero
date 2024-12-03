@@ -88,7 +88,7 @@ export default class CartManager {
                 }
 
                 foundCart.products[toBeUpdatedProduct] = updatedProduct
-                console.log(existingProduct)
+                
             }
         
 
