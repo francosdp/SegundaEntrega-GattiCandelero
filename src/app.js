@@ -11,50 +11,65 @@ import ProductManager from './services/ProductManager.js'
 const app = express();
 const PORT = 8080
 
-const httpServer = app.listen(PORT, () => { console.log('Servidor corriendo en ' + PORT)});
-const socketServer = new Server (httpServer)
+const httpServer = app.listen(PORT, () => { console.log('Servidor corriendo en ' + PORT) });
+const socketServer = new Server(httpServer)
 
 
 const productManager = new ProductManager()
 
-socketServer.on('connection', socket =>{
+socketServer.on('connection', socket => {
     console.log("Nuevo Cliente conectado")
 
-socket.on("mensaje2",data=>{
-    console.log("Recibido",data)
+    socket.on("mensaje2", data => {
+        console.log("Recibido", data)
+    })
+    socket.on("formulario", data => {
+        if (!data.title || !data.description || !data.code || !data.price || !data.stock || !data.category) {
+            socket.emit('error', { error: "Todos los campos son obligatorios" });
+            return;
+        }
+        productManager.addProduct(data)
+            .then(() => {
+                socket.emit(`success`, { message: "Producto Agregado Correctamente" })
+                let products = productManager.products
+                socket.emit('productos', products)
+            })
+            .catch(error => {
+                socket.emit('error', { error: "Error al agregar producto" })
+            })
+    })
+    socket.on('eliminar', (data) => {
+        if (!data) {
+            socket.emit('error', { error: "El campo es obligatorio " });
+            return;
+        }
+        let products = productManager.products
+
+        const productFound = products.findIndex(product => product.id === data)
+        console.log(productFound)
+        if (productFound<0) {
+            socket.emit('notDeleted', { error: "Producto no encontrado" })
+        } else {
+            const deletedProduct = products.splice(productFound,1)
+            socket.emit('deleted', { message: "El producto se ha eliminado" })
+            productManager.saveFile()
+            products = productManager.products
+            socket.emit('productos', products)
+        }
+
+
+
+
+
+    })
+
+
 })
-socket.on("formulario",data=>{
-    if (!data.title || !data.description || !data.code || !data.price || !data.stock || !data.category) {
-        socket.emit('error', { error: "Todos los campos son obligatorios" });
-        return;
-    }
-    productManager.addProduct(data)
-.then(()=>{
-    socket.emit(`success`, {message : "Producto Agregado Correctamente"})
-    let products = productManager.products
-    socket.emit('productos',products)
-})
-.catch(error=>{
-    socket.emit('error', {error: "Error al agregar producto"})
-})
 
 
 
 
 
-
-
-
-
-})
-
-
-
-
-
-
-
-})
 
 
 
@@ -62,18 +77,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.engine('handlebars', handlebars.engine())
-app.set('views', __dirname+'/views')
+app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
 
 
-app.use(express.static(__dirname+'/public'))
+app.use(express.static(__dirname + '/public'))
 
 
 
 
-app.use('/',viewsRouter)
+app.use('/', viewsRouter)
 app.use('/api/products', productRouter)
-app.use('/api/carts',cartRouter)
+app.use('/api/carts', cartRouter)
 
 
 

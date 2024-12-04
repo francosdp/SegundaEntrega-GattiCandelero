@@ -53,9 +53,29 @@ socket.on('productos', (data) => {
     let productsDOM = data.map(product => `<li>
     <strong>${product.title}</strong>
     Precio: ${product.price}
+    Id: ${product.id}
     </li>
     `).join('')
 
     const productos = document.getElementById('productos');
     productos.innerHTML = productsDOM;
+})
+
+const deletedProdId = document.getElementById('deleteId')
+const deleteBtn =document.getElementById('deleteBtn')
+const deleteProdForm = document.getElementById('deleteProdForm')
+
+deleteProdForm.addEventListener('submit',(e)=>{
+    e.preventDefault()
+
+    const idToBeDeleted = parseInt(deletedProdId.value)
+    socket.emit('eliminar',idToBeDeleted)
+
+})
+
+socket.on('notDeleted', (error) => {
+    console.log(error)
+})
+socket.on('deleted', (respuesta) => {
+    console.log(respuesta.message)
 })

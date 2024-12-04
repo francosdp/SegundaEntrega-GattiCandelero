@@ -1,4 +1,5 @@
 <div>
+    <h2>Ingrese nuevo Producto</h2>
 <form action="get" id="formulario">
     <p>Nombre</p>
     <input id="title" type="text" />
@@ -13,6 +14,12 @@
     <p>Categoria</p>
     <input id="category" type="text" />
     <button type="submit" id="submitBtn">Enviar</button>
+</form>
+<h3>Elimine un producto existente</h3>
+<form action="post"  id="deleteProdForm">
+    <p>Ingrese el Id del producto</p>
+    <input id="deleteId" type="number">
+    <button type="submit" id="deleteBtn">Eliminar</button>
 </form>
 <div>
     <ul id="productos"></ul>
